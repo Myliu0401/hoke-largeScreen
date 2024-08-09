@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts</title>
+    <!-- 引入 ECharts 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+
+<body style="height: 100%; margin: 0;">
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 300px; height: 300px; margin: auto; padding-top: 50px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的 DOM，初始化 ECharts 实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            backgroundColor: '#0b1e4f',
+            title: {
+                text: '',
+                left: '48%',
+                top: '45%',
+                textAlign: 'center',
+                textVerticalAlign: 'middle',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 12,
+                    fontWeight: 'normal',
+                },
+                show: false
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: ['68%', '70%'],
+                    hoverAnimation: false,
+                    label: {
+                        show: false
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: (function () {
+                        var data = [];
+                        for (var i = 0; i < 100; ++i) {
+                            data.push({
+                                value: 1,
+                                itemStyle: {
+                                    color: (i % 2 === 0) ? '#1f6ba8' : 'transparent'
+                                }
+                            });
+                        }
+                        return data;
+                    })()
+                },
+                {
+                    type: 'pie',
+                    radius: ['55%', '60%'],
+                    silent: false,
+                    data: [
+                        {
+                            value: 25,
+                            itemStyle: { color: '#34bfa3' },
+                            label: {
+                                show: false
+                            }
+                        },
+                        {
+                            value: 75,
+                            itemStyle: { color: '#1f3b4d' },
+                            label: {
+                                show: true,  // 显示标签
+                                position: 'outside',  // 标签显示在饼图外部
+                                formatter: (params) => {
+                                    if (params.dataIndex === 0) {
+                                        return params.value;
+                                    } else {
+                                        return '';
+                                    }
+                                },  // 仅对第一个数据项显示标签内容
+                            },
+                            labelLine: {
+                                show: false,  // 显示引导线
+                            },
+                        }
+                    ],
+                    z: 10
+                },
+                {
+                    type: 'pie',
+                    radius: ['30%', '33%'],
+                    silent: true,
+                    label: {
+                        show: false
+                    },
+                    data: [
+                        { value: 50, itemStyle: { color: '#00aaff' } }
+                    ]
+                },
+                {
+                    type: 'gauge',
+                    radius: '25%',
+                    startAngle: 90,
+                    endAngle: -269.9999,
+                    silent: true,
+                    axisLine: {
+                        roundCap: true,
+                        lineStyle: {
+                            width: 10,
+                            color: [[0.6, '#00ccff'], [1, '#173158']]
+                        }
+                    },
+                    pointer: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false
+                    },
+                    detail: {
+                        show: false
+                    },
+                    data: [{ value: 60 }],
+
+                },
+            ],
+
+            graphic: [
+                {
+                    type: 'line',
+                    shape: { x1: 180, y1: 70, x2: 210, y2: 50 },
+                    style: { stroke: '#ffac28', lineWidth: 2 },
+                    z: 11
+                },
+                {
+                    type: 'line',
+                    shape: { x1: 210, y1: 50, x2: 240, y2: 50 },
+                    style: { stroke: '#ffac28', lineWidth: 2 },
+                    z: 11
+                },
+                {
+                    type: 'text',
+                    left: 245,
+                    top: 45,
+                    style: {
+                        text: 'CPU',
+                        fill: '#ffffff',
+                        font: 'bold 14px sans-serif'
+                    },
+                    z: 11
+                },
+                {
+                    type: 'line',
+                    shape: { x1: 150, y1: 181, x2: 190, y2: 260 },
+                    style: { stroke: '#ffac28', lineWidth: 2 },
+                    z: 11
+                },
+                {
+                    type: 'line',
+                    shape: { x1: 190, y1: 260, x2: 220, y2: 260 },
+                    style: { stroke: '#ffac28', lineWidth: 2 },
+                    z: 11
+                },
+                {
+                    type: 'text',
+                    left: 225,
+                    top: 255,
+                    style: {
+                        text: 'RAM',
+                        fill: '#ffffff',
+                        font: 'bold 14px sans-serif'
+                    },
+                    z: 11
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>

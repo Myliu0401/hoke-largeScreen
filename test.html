@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+
+<body style="height: 400px; width: 600px; margin: 0; background-color: #0b1e4f;">
+  <div id="main" style="width: 100%; height: 100%;"></div>
+  <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    window.maxValue = 0;
+    let first = true;
+
+    let titles = [];
+    titles.length = 100;
+    titles.fill('sun');
+
+    let datas = [];
+    datas.length = 100;
+
+    for (let i = 0; i < datas.length; i++) {
+      datas[i] = (Math.ceil(Math.random() * (1300 - 200) + 200));
+    }
+
+
+    function aa(maxValue1 = 0) {
+      var option = {
+        backgroundColor: '#0b1e4f',
+        tooltip: {
+          trigger: 'axis'
+        },
+        grid: {
+          top: '20px', // 增加顶部边距以避免覆盖内容
+          bottom: '10%',
+          left: '10%',
+          right: '10%',
+          borderColor: 'transparent', // 隐藏网格区域的边框
+          borderWidth: 0 // 隐藏网格区域的边框
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: titles,
+          axisLine: {
+            show: false // 隐藏X轴线
+          },
+          axisLabel: {
+            show: false // 隐藏X轴的刻度标签
+          },
+          axisTick: {
+            show: false // 隐藏X轴的刻度线
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(255, 255, 255, 0.2)' // 网格线的颜色
+            }
+          }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            show: false // 隐藏Y轴线
+          },
+          axisLabel: {
+            show: true, // 显示Y轴的刻度标签
+            color: (value, index) => {
+              window.maxValue = (+value > window.maxValue) ? +value : window.maxValue;
+              console.log(window.maxValue)
+              return '#008c8c' // 与网格线颜色相同,
+            },
+
+          },
+          axisTick: {
+            show: true, // 显示Y轴的刻度线
+            lineStyle: {
+              color: 'rgba(255, 255, 255, 0.2)' // 与网格线颜色相同
+            }
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(255, 255, 255, 0.2)' // 网格线的颜色
+            }
+          }
+
+        },
+        series: [
+          {
+            name: 'Data',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            lineStyle: {
+              color: '#00ccff',
+              opacity: 0
+            },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                { offset: 0, color: 'rgba(18, 101, 131, 1)' },
+                { offset: 1, color: 'rgba(84, 126, 80, 1)' }
+              ])
+            },
+            data: datas,
+            z: 1
+          },
+          {
+            name: 'Line Only',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            lineStyle: {
+              color: '#008c8c'
+            },
+            areaStyle: null,
+            data: datas,
+            z: 2
+          },
+          {
+            name: 'Top Cover',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            lineStyle: {
+              color: 'transparent'
+            },
+            data: datas,
+            z: 5, // 确保它在所有其他系列上面
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            markLine: {
+              data: [
+                { yAxis: maxValue1 }, // 放置在 yAxis 的最大值位置，覆盖顶部网格线
+                { xAxis: 'max' }
+              ],
+              lineStyle: {
+                color: '#0b1e4f', // 透明颜色以隐藏网格线
+                type: 'solid'
+              },
+              label: {
+                show: false // 隐藏标签
+              },
+              symbol: 'none' // 不显示箭头
+            }
+          }
+
+        ],
+        dataZoom: [
+          {
+            type: 'inside', // 支持在图表内进行缩放
+            xAxisIndex: [0] // 指定缩放的 X 轴
+          },
+          {
+            type: 'slider', // 支持通过滑块缩放
+            xAxisIndex: [0], // 指定缩放的 X 轴
+            start: 0, // 默认起始比例
+            end: 100, // 默认结束比例
+            show: false // 隐藏滑块
+          }
+        ]
+      };
+
+      myChart.setOption(option);
+
+      first && myChart.on('datazoom', (params) => {
+      setTimeout(()=>{
+         aa(window.maxValue)
+      }, 1000)
+         
+        
+      });
+
+      first && myChart.on('finished', () => {
+        first && aa(window.maxValue)
+        first = false;
+        setTimeout(() => {
+          window.maxValue = 0;
+        }, 2000);
+      });
+    };
+
+
+
+
+    aa();
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

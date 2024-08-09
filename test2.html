@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts</title>
+  <!-- 引入 ECharts 文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+<body style="height: 100%; margin: 0; background-color: #0b1e4f;">
+  <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+  <div id="main" style="width: 200px; height: 200px; margin: auto; padding-top: 50px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的 DOM，初始化 ECharts 实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+      backgroundColor: '#0b1e4f',  // 设置背景颜色
+      title: {
+        text: '150\n终端用户',
+        left: 'center',
+        top: '45%',
+        textAlign: 'center',
+        textVerticalAlign: 'middle',
+        textStyle: {
+          color: '#fff',
+          fontSize: 18,
+          fontWeight: 'normal',
+        }
+      },
+      series: [
+        // 外层环形圆
+        {
+          type: 'pie',
+          radius: ['85%', '90%'],
+          silent: true,
+          label: {
+            show: false
+          },
+          data: [
+            { value: 100, itemStyle: { color: '#00aaff' } }
+          ]
+        },
+        // 内层进度条环形圆
+        {
+          type: 'gauge',
+          radius: '80%',
+          startAngle: 90,
+          endAngle: -269.9999,
+          silent: true,
+          axisLine: {
+            roundCap: true,
+            lineStyle: {
+              width: 20,
+              color: [[0.6, '#00ccff'], [1, '#173158']]
+            }
+          },
+          pointer: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          },
+          detail: {
+            show: false
+          },
+          data: [{ value: 60 }]
+        }
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表
+    myChart.setOption(option);
+  </script>
+</body>
+</html>

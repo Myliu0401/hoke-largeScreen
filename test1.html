@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts</title>
+  <!-- 引入 ECharts 文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+<body style="height: 100%; margin: 0; background-color: #0b1e4f;">
+  <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+  <div id="main" style="width: 200px; height: 200px; margin: auto; padding-top: 50px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的 DOM，初始化 ECharts 实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+      backgroundColor: '#0b1e4f',  // 设置背景颜色
+      series: [
+        // 外圈虚线
+        {
+          type: 'pie',
+          radius: ['95%', '100%'],
+          hoverAnimation: false,
+          label: {
+            show: false
+          },
+          labelLine: {
+            show: false
+          },
+          data: (function() {
+            var data = [];
+            for (var i = 0; i < 100; ++i) {
+              data.push({
+                value: 1,
+                itemStyle: {
+                  color: (i % 2 === 0) ? '#1f6ba8' : 'transparent'
+                }
+              });
+            }
+            return data;
+          })()
+        },
+        // 进度条环形
+        {
+          name: '进度条',
+          type: 'pie',
+          radius: ['70%', '90%'],
+          avoidLabelOverlap: false,
+          startAngle: 90,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: 25, itemStyle: { color: '#34bfa3' } },
+            { value: 75, itemStyle: { color: '#1f3b4d' } }
+          ]
+        },
+        // 中心小圆
+        {
+          type: 'pie',
+          radius: ['0%', '50%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: 100, itemStyle: { color: '#1f6ba8' } }
+          ]
+        }
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表
+    myChart.setOption(option);
+
+    // 自定义中心文本
+    myChart.getZr().add(new echarts.graphic.Text({
+      style: {
+        text: '25\n产品数',
+        x: myChart.getWidth() / 2,
+        y: myChart.getHeight() / 2,
+        textAlign: 'center',
+        textVerticalAlign: 'middle',
+        fontSize: 18,
+        fontWeight: 'bold',
+        fill: '#fff'
+      }
+    }));
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="map" style="width: 500px; height: 400px;"></div>
+    <script type="module">
+        import WorldJSON from './my.js';
+
+        echarts.registerMap('world', WorldJSON);
+
+        function draw(data) {
+            var myChart = echarts.init(document.getElementById('map'));
+            var option = {
+                backgroundColor: '#001213',
+                tooltip: {
+                    trigger: 'item',
+                    icon: 'query',
+                    formatter: function (e, t, n) {
+                        let string = '';
+                        string += `<div style="padding:10px"><span style="padding-right:10px">${e.name}</span><span>(${e.value ? e.value : ''}  台)</span> </div>`;
+                        return string;
+                    },
+                    fontSize: '12px',
+                    backgroundColor: 'rgba(7,16,47,.6)', // 设置背景图片 rgba格式
+                    color: 'black',
+                    borderWidth: '0', // 边框宽度设置1
+                    borderColor: 'rgba(9,229,237,.2)', // 设置边框颜色
+                    textStyle: {
+                        color: '#fff', // 设置文字颜色
+                    },
+                    extraCssText: 'box-shadow: 0px 0px 20px inset #09E5ED',
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true,
+                },
+                geo: {
+                    map: 'world',
+                    roam: true, // 是否可以缩放、拖拽
+                    scaleLimit: {
+                        min: 1,
+                        max: 2,
+                    },
+                    zoom: 1,
+                    label: {
+                        show: false,
+                        fontSize: '10',
+                        color: '#fff',
+                    },
+                    itemStyle: {
+                        borderWidth: 1,
+                        areaColor: '#999999',
+                        borderColor: '#ffffff',
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            areaColor: '#1ab1f9', // 高亮时的区域颜色
+                            borderWidth: 1,
+                        },
+                        label: {
+                            show: true,
+                            fontSize: '10',
+                            color: '#fff',
+                        }
+                    },
+                    select: {
+                        itemStyle: {
+                            areaColor: '#999999', // 点击时的区域颜色
+                            borderWidth: 1,
+                        },
+                        label: {
+                            show: false, // 点击后隐藏文本
+                            fontSize: '10',
+                            color: '#fff',
+                        }
+                    },
+                    regions: [
+                        {
+                            name: 'China',
+                            itemStyle: {
+                                areaColor: '#1ab1f9', // 区域颜色
+                                borderWidth: 1,
+                            },
+                            emphasis: {
+                                itemStyle: {
+                                    areaColor: '#1ab1f9', // 高亮时的区域颜色
+                                    borderWidth: 1,
+                                },
+                            },
+                            label: {
+                                show: true,
+                                fontSize: '10',
+                                color: '#fff',
+                                formatter: '213'
+                            },
+                            select: {
+                                itemStyle: {
+                                    areaColor: '#1ab1f9', // 点击时的区域颜色保持不变
+                                    borderWidth: 1,
+                                },
+                                label: {
+                                    show: true, // 点击后文本显示保持不变
+                                    fontSize: '10',
+                                    color: '#fff',
+                                }
+                            },
+                        }
+                    ],
+                },
+                series: [
+                    {
+                        name: '整机销售台数 (台)',
+                        type: 'map',
+                        geoIndex: 0,
+                        data: [
+                            { name: 'China', value: 100, }
+                        ],
+                        emphasis: {
+                            itemStyle: {
+                                areaColor: '#1ab1f9', // 高亮时的区域颜色
+                                borderWidth: 1,
+                            },
+                            label: {
+                                show: true,
+                                fontSize: '10',
+                                color: '#fff',
+                            }
+                        },
+                        select: {
+                            itemStyle: {
+                                areaColor: '#999999', // 点击时的区域颜色
+                                borderWidth: 1,
+                            },
+                            label: {
+                                show: false, // 点击后隐藏文本
+                                fontSize: '10',
+                                color: '#fff',
+                            }
+                        },
+                    }
+                ]
+            };
+
+
+
+
+            window.addEventListener('resize', () => {
+                myChart.resize();
+            });
+            myChart.setOption(option);
+        }
+
+        draw();
+    </script>
+</body>
+
+</html>
