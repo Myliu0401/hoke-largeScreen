@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      :root,
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      .hoke_largeScreen {
+        width: 100%;
+        height: 100%;
+        background-color: #050d4b;
+        display: flex;
+      }
+
+      .hoke_largeScreen .largeScreen_left {
+        width: 20vw;
+        padding-top: 5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfUsers {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfUsers .eCharts {
+        width: 95%;
+        height: 95%;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfDevice {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfDevice .eCharts {
+        width: 95%;
+        height: 95%;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+        flex-direction: column;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .titleBox {
+        height: 2.5vw;
+        width: 100%;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .contentBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .contentBox .boxs {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .contentBox .boxs div {
+        width: 11vh;
+        height: 11vh;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        div:first-child {
+        margin-right: 1vw;
+      }
+
+      /* =================================================== */
+
+      .hoke_largeScreen .largeScreen_center {
+        width: 60vw;
+      }
+
+      /* =================================================== */
+
+      .hoke_largeScreen .largeScreen_right {
+        width: 20vw;
+        padding-top: 5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .titleBox {
+        height: 2.5vw;
+        width: 100%;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .contentBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .contentBox .boxs {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item {
+        width: 11vh;
+        height: 11vh;
+        background-image: url(./img/2.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #fff;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item:first-child {
+        margin-right: 1vw;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item
+        .num {
+        font-size: 1.3vw;
+        font-weight: bold;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item
+        .name {
+        font-size: 0.7vw;
+        margin-top: 4px;
+      }
+
+      .hoke_largeScreen .largeScreen_right .applicationIndustry {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .applicationIndustry .titleBox {
+        height: 2.5vw;
+        width: 100%;
+      }
+
+      .hoke_largeScreen .largeScreen_right .applicationIndustry .contentBox {
+        width: 90%;
+        height: 90%;
+      }
+
+      .hoke_largeScreen .largeScreen_right .systemResource {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+        flex-direction: column;
+      }
+
+      .hoke_largeScreen .largeScreen_right .systemResource .titleBox {
+        height: 2.5vw;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hoke_largeScreen">
+      <div class="largeScreen_left">
+        <div class="numberOfUsers">
+          <div class="eCharts"></div>
+        </div>
+
+        <div class="numberOfDevice">
+          <div class="eCharts"></div>
+        </div>
+
+        <div class="numEnterUsers">
+          <div class="titleBox"></div>
+          <div class="contentBox">
+            <div class="boxs">
+              <div class="enterprise"></div>
+              <div class="product"></div>
+            </div>
+            <div class="boxs">
+              <div class="personal"></div>
+              <div class="terminal"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="largeScreen_center"></div>
+      <div class="largeScreen_right">
+        <div class="deviceStatistics">
+          <div class="titleBox"></div>
+          <div class="contentBox">
+            <div class="boxs">
+              <div class="item">
+                <span class="num">4561</span>
+                <span class="name">设备总数</span>
+              </div>
+              <div class="item">
+                <span class="num">4561</span>
+                <span class="name">设备总数</span>
+              </div>
+            </div>
+
+            <div class="boxs">
+              <div class="item">
+                <span class="num">4561</span>
+                <span class="name">设备总数</span>
+              </div>
+              <div class="item">
+                <span class="num">4561</span>
+                <span class="name">设备总数</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="applicationIndustry">
+          <div class="titleBox"></div>
+          <div>
+            <div
+              id="legend-container"
+              style="
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 20px;
+              "
+            >
+              <div
+                class="legend-item"
+                data-index="0"
+                style="display: flex; align-items: center; cursor: pointer"
+              >
+                <div
+                  style="
+                    width: 14px;
+                    height: 14px;
+                    background-color: #00eded;
+                    margin-right: 8px;
+                  "
+                ></div>
+                <span>医药</span>
+              </div>
+              <div
+                class="legend-item"
+                data-index="1"
+                style="display: flex; align-items: center; cursor: pointer"
+              >
+                <div
+                  style="
+                    width: 14px;
+                    height: 14px;
+                    background-color: #65d3ae;
+                    margin-right: 8px;
+                  "
+                ></div>
+                <span>食品</span>
+              </div>
+              <div
+                class="legend-item"
+                data-index="2"
+                style="display: flex; align-items: center; cursor: pointer"
+              >
+                <div
+                  style="
+                    width: 14px;
+                    height: 14px;
+                    background-color: #536f47;
+                    margin-right: 8px;
+                  "
+                ></div>
+                <span>科研</span>
+              </div>
+              <div
+                class="legend-item"
+                data-index="3"
+                style="display: flex; align-items: center; cursor: pointer"
+              >
+                <div
+                  style="
+                    width: 14px;
+                    height: 14px;
+                    background-color: #5156fb;
+                    margin-right: 8px;
+                  "
+                ></div>
+                <span>化工</span>
+              </div>
+            </div>
+          </div>
+          <div class="contentBox"></div>
+        </div>
+
+        <div class="systemResource">
+          <div class="titleBox"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script>
+      const numberOfUsersECharts = echarts.init(
+        document.querySelector(".numberOfUsers .eCharts")
+      );
+
+      const numberOfDeviceECharts = echarts.init(
+        document.querySelector(".numberOfDevice .eCharts")
+      );
+
+      const enterpriseECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .enterprise")
+      );
+
+      const productECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .product")
+      );
+
+      const personalECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .personal")
+      );
+
+      const terminalECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .terminal")
+      );
+
+      const applicationIndustryECharts = echarts.init(
+        document.querySelector(".applicationIndustry .contentBox")
+      );
+
+      function renderNumOfUsersECharts() {
+        const option = {
+          grid: {
+            top: "20%",
+            bottom: "12%",
+            left: "17%",
+          },
+          title: {
+            text: "新增用户数",
+            left: "center",
+            top: 10,
+            textStyle: {
+              color: "#fff",
+              fontSize: 12,
+            },
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+          xAxis: {
+            type: "category",
+            data: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月",
+            ],
+            axisLine: {
+              lineStyle: {
+                color: "#173158", // X轴的颜色
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            axisTick: {
+              show: false, // 隐藏 X 轴的刻度
+            },
+            axisLabel: {
+              fontSize: 11,
+              color: "#fff",
+            },
+          },
+          yAxis: {
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                color: "#fff", // Y轴的颜色，与 X轴 一致
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#173158",
+              },
+            },
+            axisLabel: {
+              fontSize: 11,
+              color: "#fff",
+            },
+          },
+          dataZoom: [
+            {
+              type: "slider",
+              show: true,
+              xAxisIndex: [0],
+              start: 0,
+              end: 50, // 默认显示前 50% 的数据
+              show: false, // 隐藏滑块
+              minValueSpan: 3,
+            },
+            {
+              type: "inside",
+              xAxisIndex: [0],
+              start: 0,
+              end: 50,
+            },
+          ],
+          series: [
+            // 背景柱状图
+            {
+              type: "bar",
+              data: [
+                100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+              ],
+              barWidth: "30%",
+              barGap: "-100%",
+              itemStyle: {
+                color: "rgba(255, 255, 255, 0.1)",
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+            // 实际数据柱状图
+            {
+              type: "bar",
+              data: [60, 80, 50, 70, 90, 40, 85, 55, 65, 75, 45, 95],
+              barWidth: "30%",
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#00ccff" },
+                  { offset: 1, color: "#0055ff" },
+                ]),
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+          ],
+        };
+        numberOfUsersECharts.setOption(option);
+      }
+
+      function renderNumOfDeviceECharts() {
+        const option = {
+          grid: {
+            top: "20%",
+            bottom: "12%",
+            left: "17%",
+          },
+          title: {
+            text: "新增用户数",
+            left: "center",
+            top: 10,
+            textStyle: {
+              color: "#fff",
+              fontSize: 12,
+            },
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+          xAxis: {
+            type: "category",
+            data: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月",
+            ],
+            axisLine: {
+              lineStyle: {
+                color: "#173158", // X轴的颜色
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            axisTick: {
+              show: false, // 隐藏 X 轴的刻度
+            },
+            axisLabel: {
+              fontSize: 11,
+              color: "#fff",
+            },
+          },
+          yAxis: {
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                color: "#fff", // Y轴的颜色，与 X轴 一致
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#173158",
+              },
+            },
+            axisLabel: {
+              fontSize: 11,
+              color: "#fff",
+            },
+          },
+          dataZoom: [
+            {
+              type: "slider",
+              show: true,
+              xAxisIndex: [0],
+              start: 0,
+              end: 50, // 默认显示前 50% 的数据
+              show: false, // 隐藏滑块
+              minValueSpan: 3,
+            },
+            {
+              type: "inside",
+              xAxisIndex: [0],
+              start: 0,
+              end: 50,
+            },
+          ],
+          series: [
+            // 背景柱状图
+            {
+              type: "bar",
+              data: [
+                100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+              ],
+              barWidth: "30%",
+              barGap: "-100%",
+              itemStyle: {
+                color: "rgba(255, 255, 255, 0.1)",
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+            // 实际数据柱状图
+            {
+              type: "bar",
+              data: [60, 80, 50, 70, 90, 40, 85, 55, 65, 75, 45, 95],
+              barWidth: "30%",
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#00ccff" },
+                  { offset: 1, color: "#0055ff" },
+                ]),
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+          ],
+        };
+        numberOfDeviceECharts.setOption(option);
+      }
+
+      function renderEnterpriseECharts() {
+        const option = {
+          title: {
+            text: `20\n企业数`,
+            left: "center",
+            top: 25,
+            textStyle: {
+              color: "#fff",
+              fontSize: 8,
+              fontWeight: "normal", // 设置字体不加粗，'normal' 表示正常粗细
+              fontFamily: "Arial", // 也可以指定字体系列，例如 'Arial'
+            },
+          },
+          series: [
+            // 外圈虚线
+            {
+              type: "pie",
+              radius: ["95%", "100%"],
+              hoverAnimation: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              data: (function () {
+                var data = [];
+                for (var i = 0; i < 100; ++i) {
+                  data.push({
+                    value: 1,
+                    itemStyle: {
+                      color: i % 2 === 0 ? "#1f6ba8" : "transparent",
+                    },
+                  });
+                }
+                return data;
+              })(),
+            },
+            // 进度条环形
+            {
+              name: "进度条",
+              type: "pie",
+              radius: ["70%", "90%"],
+              avoidLabelOverlap: false,
+              startAngle: 90,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: 25, itemStyle: { color: "#34bfa3" } },
+                { value: 75, itemStyle: { color: "#1f3b4d" } },
+              ],
+            },
+            // 中心小圆
+            {
+              type: "pie",
+              radius: ["0%", "50%"],
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#1f6ba8" } }],
+            },
+          ],
+        };
+        enterpriseECharts.setOption(option);
+      }
+
+      function renderProductECharts() {
+        const option = {
+          title: {
+            text: `20\n企业数`,
+            left: "center",
+            top: 25,
+            textStyle: {
+              color: "#fff",
+              fontSize: 8,
+              fontWeight: "normal", // 设置字体不加粗，'normal' 表示正常粗细
+              fontFamily: "Arial", // 也可以指定字体系列，例如 'Arial'
+            },
+          },
+          series: [
+            // 外圈虚线
+            {
+              type: "pie",
+              radius: ["95%", "100%"],
+              hoverAnimation: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              data: (function () {
+                var data = [];
+                for (var i = 0; i < 100; ++i) {
+                  data.push({
+                    value: 1,
+                    itemStyle: {
+                      color: i % 2 === 0 ? "#1f6ba8" : "transparent",
+                    },
+                  });
+                }
+                return data;
+              })(),
+            },
+            // 进度条环形
+            {
+              name: "进度条",
+              type: "pie",
+              radius: ["70%", "90%"],
+              avoidLabelOverlap: false,
+              startAngle: 90,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: 25, itemStyle: { color: "#34bfa3" } },
+                { value: 75, itemStyle: { color: "#1f3b4d" } },
+              ],
+            },
+            // 中心小圆
+            {
+              type: "pie",
+              radius: ["0%", "50%"],
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#1f6ba8" } }],
+            },
+          ],
+        };
+        productECharts.setOption(option);
+      }
+
+      function renderPersonalECharts() {
+        const option = {
+          title: {
+            text: "10\n个人",
+            left: 33,
+            top: 35,
+            textAlign: "center",
+            textVerticalAlign: "middle",
+            textStyle: {
+              color: "#fff",
+              fontSize: 10,
+              fontWeight: "normal",
+            },
+          },
+          series: [
+            // 外层环形圆
+            {
+              type: "pie",
+              radius: ["85%", "90%"],
+              silent: true,
+              label: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#00aaff" } }],
+            },
+            // 内层进度条环形圆
+            {
+              type: "gauge",
+              radius: "80%",
+              startAngle: 90,
+              endAngle: -269.9999,
+              silent: true,
+              axisLine: {
+                roundCap: true,
+                lineStyle: {
+                  width: 10,
+                  color: [
+                    [0.6, "#00ccff"],
+                    [1, "#173158"],
+                  ],
+                },
+              },
+              pointer: {
+                show: false,
+              },
+              axisTick: {
+                show: false,
+              },
+              splitLine: {
+                show: false,
+              },
+              axisLabel: {
+                show: false,
+              },
+              detail: {
+                show: false,
+              },
+              data: [{ value: 60 }],
+            },
+          ],
+        };
+
+        personalECharts.setOption(option);
+      }
+
+      function renderTerminalECharts() {
+        const option = {
+          title: {
+            text: "10\n个人",
+            left: 33,
+            top: 35,
+            textAlign: "center",
+            textVerticalAlign: "middle",
+            textStyle: {
+              color: "#fff",
+              fontSize: 10,
+              fontWeight: "normal",
+            },
+          },
+          series: [
+            // 外层环形圆
+            {
+              type: "pie",
+              radius: ["85%", "90%"],
+              silent: true,
+              label: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#00aaff" } }],
+            },
+            // 内层进度条环形圆
+            {
+              type: "gauge",
+              radius: "80%",
+              startAngle: 90,
+              endAngle: -269.9999,
+              silent: true,
+              axisLine: {
+                roundCap: true,
+                lineStyle: {
+                  width: 10,
+                  color: [
+                    [0.6, "#00ccff"],
+                    [1, "#173158"],
+                  ],
+                },
+              },
+              pointer: {
+                show: false,
+              },
+              axisTick: {
+                show: false,
+              },
+              splitLine: {
+                show: false,
+              },
+              axisLabel: {
+                show: false,
+              },
+              detail: {
+                show: false,
+              },
+              data: [{ value: 60 }],
+            },
+          ],
+        };
+
+        terminalECharts.setOption(option);
+      }
+
+      function renderApplicationIndustryECharts() {
+        const option = {
+          legend: {
+            show: false, // 隐藏内置的图例
+          },
+          series: [
+            {
+              type: "pie",
+              radius: ["30%", "70%"],
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+                position: "center",
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  fontSize: 18,
+                  fontWeight: "normal",
+                  color: "#FFFFFF",
+                },
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: 1048, name: "医药", itemStyle: { color: "#00EDED" } },
+                { value: 735, name: "食品", itemStyle: { color: "#65D3AE" } },
+                { value: 580, name: "科研", itemStyle: { color: "#536F47" } },
+                { value: 484, name: "化工", itemStyle: { color: "#5156FB" } },
+              ],
+            },
+          ],
+        };
+        applicationIndustryECharts.setOption(option);
+
+        // 监听自定义图例的鼠标移入和移出事件
+        document.querySelectorAll(".legend-item").forEach(function (item) {
+          item.addEventListener("mouseover", function () {
+            var index = parseInt(this.getAttribute("data-index"));
+            // 触发图表项的放大效果
+            applicationIndustryECharts.dispatchAction({
+              type: "highlight",
+              seriesIndex: 0,
+              dataIndex: index,
+            });
+          });
+
+          item.addEventListener("mouseout", function () {
+            var index = parseInt(this.getAttribute("data-index"));
+            // 取消图表项的放大效果
+            applicationIndustryECharts.dispatchAction({
+              type: "downplay",
+              seriesIndex: 0,
+              dataIndex: index,
+            });
+          });
+        });
+      }
+
+      renderNumOfUsersECharts();
+      renderNumOfDeviceECharts();
+      renderEnterpriseECharts();
+      renderProductECharts();
+      renderPersonalECharts();
+      renderTerminalECharts();
+      renderApplicationIndustryECharts();
+    </script>
+  </body>
+</html>
