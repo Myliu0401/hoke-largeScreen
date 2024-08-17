@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      :root,
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      .hoke_largeScreen {
+        width: 100%;
+        height: 100%;
+        background-color: #050d4b;
+        display: flex;
+        position: relative;
+        min-width: 1278px;
+        overflow: auto;
+      }
+
+      .hoke_largeScreen .largeScreen_left {
+        width: 20vw;
+        padding-top: 5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* 滚动条整体样式 */
+      ::-webkit-scrollbar {
+        width: 7px; /* 宽度 */
+        height: 7px; /* 高度 (用于水平滚动条) */
+      }
+
+      /* 滚动条轨道 */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; /* 轨道背景色 */
+        border-radius: 10px; /* 轨道圆角 */
+      }
+
+      /* 滚动条滑块 */
+      ::-webkit-scrollbar-thumb {
+        background: #888; /* 滑块颜色 */
+        border-radius: 10px; /* 滑块圆角 */
+      }
+
+      /* 滑块在鼠标悬停时的样式 */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; /* 滑块悬停颜色 */
+      }
+
+      /* =================================================== */
+
+      .hoke_largeScreen .largeScreen_center {
+        width: 60vw;
+      }
+
+      /* =================================================== */
+
+      .hoke_largeScreen .largeScreen_right {
+        width: 20vw;
+        padding-top: 5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* ======================================================= */
+      .hoke_largeScreen .largeScreen_titleBox {
+        position: absolute;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        height: 2.5vw;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hoke_largeScreen .largeScreen_titleBox .iconBox {
+        position: absolute;
+        width: 3vh;
+        left: 21px;
+        top: 50%;
+        transform: scale(1) translateY(-50%);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .hoke_largeScreen .largeScreen_titleBox .iconBox:hover {
+        transform: scale(1.1) translateY(-50%);
+      }
+
+      .hoke_largeScreen .largeScreen_titleBox .title {
+        color: #fff;
+        font-weight: bold;
+        font-size: 2.5vw;
+      }
+
+      @media (min-width: 1800px) {
+        .hoke_largeScreen .largeScreen_titleBox .title {
+          font-size: 2.2vw;
+        }
+
+        .hoke_largeScreen .largeScreen_center .curveChartsBox .dateBox {
+          font-size: 1.1vw;
+        }
+      }
+    </style>
+
+    <style>
+      .hoke_largeScreen .largeScreen_left .numberOfUsers {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+        flex-direction: column;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfUsers .titleBox {
+        height: 2.5vw;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        font-size: 1.7vh;
+        padding-top: 1.7vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfUsers .titleBox .title {
+        color: #fff;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfUsers .titleBox .img {
+        width: 100%;
+        height: 1px; /* 可以根据需要调整高度 */
+        background: linear-gradient(
+          to right,
+          transparent,
+          #1f6ba8,
+          transparent
+        );
+        position: absolute;
+        bottom: 1.5vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfUsers .eCharts {
+        width: 95%;
+        flex-grow: 1;
+      }
+    </style>
+
+    <style>
+      .hoke_largeScreen .largeScreen_left .numberOfDevice {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+        flex-direction: column;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfDevice .titleBox {
+        height: 2.5vw;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        font-size: 1.7vh;
+        padding-top: 1.7vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfDevice .titleBox .title {
+        color: #fff;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfDevice .titleBox .img {
+        width: 100%;
+        height: 1px; /* 可以根据需要调整高度 */
+        background: linear-gradient(
+          to right,
+          transparent,
+          #1f6ba8,
+          transparent
+        );
+        position: absolute;
+        bottom: 1.5vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numberOfDevice .eCharts {
+        width: 95%;
+        flex-grow: 1;
+      }
+    </style>
+
+    <style>
+      .hoke_largeScreen .largeScreen_left .numEnterUsers {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+        flex-direction: column;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .titleBox {
+        height: 2.5vw;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        font-size: 1.7vh;
+        padding-top: 1.7vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .titleBox .title {
+        color: #fff;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .titleBox .img {
+        width: 100%;
+        height: 1px; /* 可以根据需要调整高度 */
+        background: linear-gradient(
+          to right,
+          transparent,
+          #1f6ba8,
+          transparent
+        );
+        position: absolute;
+        bottom: 1.5vh;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .contentBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      .hoke_largeScreen .largeScreen_left .numEnterUsers .contentBox .boxs {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .enterpriseBox {
+        position: relative;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .enterpriseBox
+        .numName {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(calc(-50% - 0.5vw), -50%);
+        color: #fff;
+        z-index: 11;
+        font-size: 1.3vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .enterpriseBox
+        .num {
+      }
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .enterpriseBox
+        .name {
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .productBox {
+        position: relative;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .productBox
+        .numName {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(calc(-50%), -50%);
+        color: #fff;
+        z-index: 11;
+        font-size: 1.3vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .productBox
+        .num {
+      }
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .productBox
+        .name {
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .personalBox {
+        position: relative;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .personalBox
+        .numName {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(calc(-50% - 0.5vw), -50%);
+        color: #00e1e7;
+        z-index: 11;
+        font-size: 1.3vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .personalBox
+        .num {
+      }
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .personalBox
+        .name {
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .terminalBox {
+        position: relative;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .terminalBox
+        .numName {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(calc(-50%), -50%);
+        color: #00e1e7;
+        z-index: 11;
+        font-size: 1.3vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .terminalBox
+        .num {
+      }
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .terminalBox
+        .name {
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .enterprise,
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .product,
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .personal,
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .terminal {
+        width: 11vh;
+        height: 11vh;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .enterprise,
+      .hoke_largeScreen
+        .largeScreen_left
+        .numEnterUsers
+        .contentBox
+        .boxs
+        .personal {
+        margin-right: 1vw;
+      }
+    </style>
+
+    <style>
+      .hoke_largeScreen .largeScreen_right .deviceStatistics {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .titleBox {
+        height: 2.5vw;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        font-size: 1.7vh;
+        padding-top: 1.7vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .titleBox .title {
+        color: #fff;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .titleBox .img {
+        width: 100%;
+        height: 1px; /* 可以根据需要调整高度 */
+        background: linear-gradient(
+          to right,
+          transparent,
+          #1f6ba8,
+          transparent
+        );
+        position: absolute;
+        bottom: 1.5vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .contentBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        flex-grow: 1;
+      }
+
+      .hoke_largeScreen .largeScreen_right .deviceStatistics .contentBox .boxs {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item {
+        width: 11vh;
+        height: 9.5vh;
+        background-image: url(./img/2.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #fff;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item:first-child {
+        margin-right: 1vw;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item
+        .num {
+        font-size: 1.3vw;
+        font-weight: bold;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item
+        .num.orange {
+        color: #fdad3f;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item
+        .num.blue {
+        color: #65fefe;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .deviceStatistics
+        .contentBox
+        .boxs
+        .item
+        .name {
+        font-size: 0.7vw;
+        margin-top: 4px;
+      }
+    </style>
+
+    <style>
+      .hoke_largeScreen .largeScreen_right .applicationIndustry {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .applicationIndustry .titleBox {
+        height: 2.5vw;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        font-size: 1.7vh;
+        padding-top: 1.7vh;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .applicationIndustry
+        .titleBox
+        .title {
+        color: #fff;
+      }
+
+      .hoke_largeScreen .largeScreen_right .applicationIndustry .titleBox .img {
+        width: 100%;
+        height: 1px; /* 可以根据需要调整高度 */
+        background: linear-gradient(
+          to right,
+          transparent,
+          #1f6ba8,
+          transparent
+        );
+        position: absolute;
+        bottom: 1.5vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .applicationIndustry .contentMain {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        flex-grow: 1;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .applicationIndustry
+        #legend-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 30%;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .applicationIndustry
+        #legend-container
+        .legend-item {
+        background-image: url(./img/2.png);
+        background-size: 100% 100%;
+        width: 80%;
+        height: 18%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      .hoke_largeScreen
+        .largeScreen_right
+        .applicationIndustry
+        #legend-container
+        .legend-item
+        span {
+        color: #fff;
+        font-size: 1.5vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .applicationIndustry .contentBox {
+        width: 90%;
+        height: 90%;
+        width: 70%;
+      }
+    </style>
+
+    <style>
+      .hoke_largeScreen .largeScreen_right .systemResource {
+        width: 90%;
+        height: 30vh;
+        background-image: url(./img/1.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3vh;
+        flex-direction: column;
+      }
+
+      .hoke_largeScreen .largeScreen_right .systemResource .titleBox {
+        height: 2.5vw;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        font-size: 1.7vh;
+        padding-top: 1.7vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .systemResource .titleBox .title {
+        color: #fff;
+      }
+
+      .hoke_largeScreen .largeScreen_right .systemResource .titleBox .img {
+        width: 100%;
+        height: 1px; /* 可以根据需要调整高度 */
+        background: linear-gradient(
+          to right,
+          transparent,
+          #1f6ba8,
+          transparent
+        );
+        position: absolute;
+        bottom: 1.5vh;
+      }
+
+      .hoke_largeScreen .largeScreen_right .systemResource .contentBox {
+        flex-grow: 1;
+        width: 100%;
+      }
+    </style>
+
+    <style>
+      .hoke_largeScreen .largeScreen_center {
+        flex-grow: 1;
+        display: flex;
+        width: 95%;
+        margin: 0 auto;
+        height: 100%;
+        flex-direction: column;
+      }
+
+      .hoke_largeScreen .largeScreen_center .mapeCharts {
+        flex-grow: 1;
+      }
+
+      .hoke_largeScreen .largeScreen_center .curveChartsBox {
+        height: 30%;
+        position: relative;
+      }
+
+      .hoke_largeScreen .largeScreen_center .curveChartsBox .dateBox {
+        color: #008c8c;
+        font-weight: bold;
+        font-size: 1.3vw;
+        position: absolute;
+        top: -1.7vw;
+      }
+
+      .hoke_largeScreen .largeScreen_center .curveChartsBox .curveCharts {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(./img/2.png);
+        background-size: 100% 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hoke_largeScreen">
+      <div class="largeScreen_titleBox">
+        <img class="iconBox" src="./img/4.png" />
+        <h1 class="title">HKSafe Air</h1>
+      </div>
+      <div class="largeScreen_left">
+        <div class="numberOfUsers">
+          <div class="titleBox">
+            <span class="title">新增用户数</span>
+            <p class="img"></p>
+          </div>
+          <div class="eCharts"></div>
+        </div>
+
+        <div class="numberOfDevice">
+          <div class="titleBox">
+            <span class="title">新增设备数</span>
+            <p class="img"></p>
+          </div>
+          <div class="eCharts"></div>
+        </div>
+
+        <div class="numEnterUsers">
+          <div class="titleBox">
+            <span class="title">企业和用户数</span>
+            <p class="img"></p>
+          </div>
+          <div class="contentBox">
+            <div class="boxs">
+              <div class="enterpriseBox">
+                <div class="numName">
+                  <span class="num"></span>
+                  <span class="name"></span>
+                </div>
+                <div class="enterprise"></div>
+              </div>
+              <div class="productBox">
+                <div class="numName">
+                  <span class="num"></span>
+                  <span class="name"></span>
+                </div>
+                <div class="product"></div>
+              </div>
+            </div>
+            <div class="boxs">
+              <div class="personalBox">
+                <div class="numName">
+                  <span class="num"></span>
+                  <span class="name"></span>
+                </div>
+                <div class="personal"></div>
+              </div>
+
+              <div class="terminalBox">
+                <div class="numName">
+                  <span class="num"></span>
+                  <span class="name"></span>
+                </div>
+                <div class="terminal"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="largeScreen_center">
+        <div class="mapeCharts"></div>
+        <div class="curveChartsBox">
+          <div class="dateBox"></div>
+          <div class="curveCharts"></div>
+        </div>
+      </div>
+
+      <div class="largeScreen_right">
+        <div class="deviceStatistics">
+          <div class="titleBox">
+            <span class="title">设备统计</span>
+            <p class="img"></p>
+          </div>
+          <div class="contentBox">
+            <div class="boxs">
+              <div class="item">
+                <span class="num blue"></span>
+                <span class="name"></span>
+              </div>
+              <div class="item">
+                <span class="num orange"></span>
+                <span class="name"></span>
+              </div>
+            </div>
+
+            <div class="boxs">
+              <div class="item">
+                <span class="num orange"></span>
+                <span class="name"></span>
+              </div>
+              <div class="item">
+                <span class="num blue"></span>
+                <span class="name"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="applicationIndustry">
+          <div class="titleBox">
+            <span class="title">应用行业</span>
+            <p class="img"></p>
+          </div>
+
+          <div class="contentMain">
+            <div id="legend-container">
+              <div class="legend-item" data-index="0">
+                <span></span>
+              </div>
+              <div class="legend-item" data-index="1">
+                <span></span>
+              </div>
+              <div class="legend-item" data-index="2">
+                <span></span>
+              </div>
+              <div class="legend-item" data-index="3">
+                <span></span>
+              </div>
+            </div>
+
+            <div class="contentBox"></div>
+          </div>
+        </div>
+
+        <div class="systemResource">
+          <div class="titleBox">
+            <span class="title">系统资源</span>
+            <p class="img"></p>
+          </div>
+          <div class="contentBox"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="module">
+      import WorldJSON from "./my.js";
+
+      echarts.registerMap("world", WorldJSON);
+
+      const numberOfUsersECharts = echarts.init(
+        document.querySelector(".numberOfUsers .eCharts")
+      );
+
+      const numberOfDeviceECharts = echarts.init(
+        document.querySelector(".numberOfDevice .eCharts")
+      );
+
+      const enterpriseECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .enterprise")
+      );
+
+      const productECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .product")
+      );
+
+      const personalECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .personal")
+      );
+
+      const terminalECharts = echarts.init(
+        document.querySelector(".numEnterUsers .boxs .terminal")
+      );
+
+      const applicationIndustryECharts = echarts.init(
+        document.querySelector(".applicationIndustry .contentBox")
+      );
+
+      const systemResourceECharts = echarts.init(
+        document.querySelector(".systemResource .contentBox")
+      );
+
+      const curveCharts = echarts.init(
+        document.querySelector(".curveChartsBox .curveCharts")
+      );
+
+      const mapeCharts = echarts.init(
+        document.querySelector(".largeScreen_center .mapeCharts")
+      );
+
+      const enterpriseBox = document.querySelector(".enterpriseBox");
+
+      const productBox = document.querySelector(".productBox");
+
+      const personalBox = document.querySelector(".personalBox");
+
+      const terminalBox = document.querySelector(".terminalBox");
+
+      const deviceStatistics = document.querySelector(".deviceStatistics");
+
+      const applicationIndustry = document.querySelector(
+        ".applicationIndustry"
+      );
+
+      const largeScreen_titleBoxIcon = document.querySelector('.largeScreen_titleBox .iconBox');
+
+      function renderNumOfUsersECharts(obj = {}) {
+        const option = {
+          grid: {
+            top: "7%",
+            bottom: "17%",
+            left: "17%",
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow",
+            },
+            confine: true,
+          },
+          xAxis: {
+            type: "category",
+            data: obj.xAxis,
+            axisLine: {
+              lineStyle: {
+                color: "#173158", // X轴的颜色
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            axisTick: {
+              show: false, // 隐藏 X 轴的刻度
+            },
+            axisLabel: {
+              fontSize: 10,
+              color: "#fff",
+            },
+          },
+          yAxis: {
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                color: "#fff", // Y轴的颜色，与 X轴 一致
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#173158",
+              },
+            },
+            axisLabel: {
+              fontSize: 10,
+              color: "#fff",
+            },
+          },
+          dataZoom: [
+            {
+              type: "slider",
+              show: true,
+              xAxisIndex: [0],
+              start: 0,
+              end: 50, // 默认显示前 50% 的数据
+              show: false, // 隐藏滑块
+              minValueSpan: 3,
+            },
+            {
+              type: "inside",
+              xAxisIndex: [0],
+              start: 0,
+              end: 50,
+            },
+          ],
+          series: [
+            // 背景柱状图
+            {
+              type: "bar",
+              data: obj.data.map((num) => {
+                return obj.maxValue;
+              }),
+              barWidth: "30%",
+              barGap: "-100%",
+              itemStyle: {
+                color: "rgba(255, 255, 255, 0.1)",
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+            // 实际数据柱状图
+            {
+              type: "bar",
+              data: obj.data,
+              barWidth: "30%",
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#19AFFB" },
+                  { offset: 1, color: "#19CED9" },
+                ]),
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+          ],
+        };
+
+        numberOfUsersECharts.clear();
+        numberOfUsersECharts.setOption(option, true);
+      }
+
+      function renderNumOfDeviceECharts(obj = {}) {
+        const option = {
+          grid: {
+            top: "7%",
+            bottom: "17%",
+            left: "17%",
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow",
+            },
+            confine: true,
+          },
+          xAxis: {
+            type: "category",
+            data: obj.xAxis,
+            axisLine: {
+              lineStyle: {
+                color: "#173158", // X轴的颜色
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            axisTick: {
+              show: false, // 隐藏 X 轴的刻度
+            },
+            axisLabel: {
+              fontSize: 10,
+              color: "#fff",
+            },
+          },
+          yAxis: {
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                color: "#fff", // Y轴的颜色，与 X轴 一致
+              },
+            },
+            axisLabel: {
+              color: "#fff",
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#173158",
+              },
+            },
+            axisLabel: {
+              fontSize: 10,
+              color: "#fff",
+            },
+          },
+          dataZoom: [
+            {
+              type: "slider",
+              show: true,
+              xAxisIndex: [0],
+              start: 0,
+              end: 50, // 默认显示前 50% 的数据
+              show: false, // 隐藏滑块
+              minValueSpan: 3,
+            },
+            {
+              type: "inside",
+              xAxisIndex: [0],
+              start: 0,
+              end: 50,
+            },
+          ],
+          series: [
+            // 背景柱状图
+            {
+              type: "bar",
+              data: obj.data.map(() => {
+                return obj.maxValue;
+              }),
+              barWidth: "30%",
+              barGap: "-100%",
+              itemStyle: {
+                color: "rgba(255, 255, 255, 0.1)",
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+            // 实际数据柱状图
+            {
+              type: "bar",
+              data: obj.data,
+              barWidth: "30%",
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "#19AFFB" },
+                  { offset: 1, color: "#19CED9" },
+                ]),
+                barBorderRadius: [15, 15, 15, 15],
+              },
+            },
+          ],
+        };
+        numberOfDeviceECharts.clear();
+        numberOfDeviceECharts.setOption(option, true);
+      }
+
+      function renderEnterpriseECharts(obj = {}) {
+        const option = {
+          series: [
+            // 外圈虚线
+            {
+              type: "pie",
+              radius: ["95%", "100%"],
+              hoverAnimation: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              data: (function () {
+                var data = [];
+                for (var i = 0; i < 100; ++i) {
+                  data.push({
+                    value: 1,
+                    itemStyle: {
+                      color: i % 2 === 0 ? "#1f6ba8" : "transparent",
+                    },
+                  });
+                }
+                return data;
+              })(),
+            },
+            // 进度条环形
+            {
+              name: "进度条",
+              type: "pie",
+              radius: ["80%", "90%"],
+              avoidLabelOverlap: false,
+              startAngle: 90,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: 25, itemStyle: { color: "#34bfa3" } },
+                { value: 75, itemStyle: { color: "#1f3b4d" } },
+              ],
+            },
+            // 中心小圆
+            {
+              type: "pie",
+              radius: ["0%", "50%"],
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#34bfa3" } }],
+            },
+          ],
+        };
+
+        enterpriseBox.querySelector(".num").innerText = obj.num;
+        enterpriseBox.querySelector(".name").innerText = obj.name;
+
+        enterpriseECharts.clear();
+        enterpriseECharts.setOption(option, true);
+      }
+
+      function renderProductECharts(obj = {}) {
+        const option = {
+          series: [
+            // 外圈虚线
+            {
+              type: "pie",
+              radius: ["95%", "100%"],
+              hoverAnimation: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              data: (function () {
+                var data = [];
+                for (var i = 0; i < 100; ++i) {
+                  data.push({
+                    value: 1,
+                    itemStyle: {
+                      color: i % 2 === 0 ? "#1f6ba8" : "transparent",
+                    },
+                  });
+                }
+                return data;
+              })(),
+            },
+            // 进度条环形
+            {
+              name: "进度条",
+              type: "pie",
+              radius: ["80%", "90%"],
+              avoidLabelOverlap: false,
+              startAngle: 90,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: 125, itemStyle: { color: "#2497C3" } },
+                { value: 100, itemStyle: { color: "#1f3b4d" } },
+              ],
+            },
+            // 中心小圆
+            {
+              type: "pie",
+              radius: ["0%", "50%"],
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+                position: "center",
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#2497C3" } }],
+            },
+          ],
+        };
+
+        productBox.querySelector(".num").innerText = obj.num;
+        productBox.querySelector(".name").innerText = obj.name;
+
+        productECharts.clear();
+        productECharts.setOption(option, true);
+      }
+
+      function renderPersonalECharts(obj = {}) {
+        const option = {
+          series: [
+            // 外层环形圆
+            {
+              type: "pie",
+              radius: ["85%", "90%"],
+              silent: true,
+              label: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#00aaff" } }],
+            },
+            // 内层进度条环形圆
+            {
+              type: "pie",
+              radius: ["65%", "80%"], // 内外径，控制圆环的厚度
+              startAngle: 90, // 起始角度
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              hoverAnimation: false, // 禁用鼠标悬浮的动画
+              data: [
+                {
+                  value: 60,
+                  itemStyle: {
+                    borderRadius: "50%", // 半圆端点
+                    color: {
+                      type: "linear",
+                      x: 0,
+                      y: 0,
+                      x2: 0,
+                      y2: 1,
+                      colorStops: [
+                        { offset: 0, color: "#00A2CC" }, // 渐变起始颜色
+                        { offset: 1, color: "#00FBF2" }, // 渐变结束颜色
+                      ],
+                      global: false, // 缺省为 false
+                    },
+                  },
+                },
+                {
+                  value: 40, // 剩余部分
+                  itemStyle: {
+                    color: "#084B82",
+                  },
+                },
+              ],
+            },
+            {
+              type: "gauge",
+              radius: "10%",
+              startAngle: 90,
+              endAngle: -269.9999,
+              axisLine: {
+                lineStyle: {
+                  width: 5,
+                  opacity: 0, // 隐藏原始轴线
+                },
+              },
+              pointer: {
+                show: false,
+              },
+              axisTick: {
+                show: false,
+              },
+              splitLine: {
+                show: false,
+              },
+              axisLabel: {
+                show: false,
+              },
+              detail: {
+                show: false,
+              },
+              data: [{ value: 60 }],
+            },
+          ],
+        };
+
+        personalBox.querySelector(".num").innerText = obj.num;
+        personalBox.querySelector(".name").innerText = obj.name;
+
+        personalECharts.clear();
+        personalECharts.setOption(option, true);
+      }
+
+      function renderTerminalECharts(obj = {}) {
+        const option = {
+          series: [
+            // 外层环形圆
+            {
+              type: "pie",
+              radius: ["85%", "90%"],
+              silent: true,
+              label: {
+                show: false,
+              },
+              data: [{ value: 100, itemStyle: { color: "#00aaff" } }],
+            },
+            // 内层进度条环形圆
+            {
+              type: "pie",
+              radius: ["65%", "80%"], // 内外径，控制圆环的厚度
+              startAngle: 90, // 起始角度
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              hoverAnimation: false, // 禁用鼠标悬浮的动画
+              data: [
+                {
+                  value: 60,
+                  itemStyle: {
+                    borderRadius: "50%", // 半圆端点
+                    color: {
+                      type: "linear",
+                      x: 0,
+                      y: 0,
+                      x2: 0,
+                      y2: 1,
+                      colorStops: [
+                        { offset: 0, color: "#00A2CC" }, // 渐变起始颜色
+                        { offset: 1, color: "#00FBF2" }, // 渐变结束颜色
+                      ],
+                      global: false, // 缺省为 false
+                    },
+                  },
+                },
+                {
+                  value: 40, // 剩余部分
+                  itemStyle: {
+                    color: "#084B82",
+                  },
+                },
+              ],
+            },
+            {
+              type: "gauge",
+              radius: "10%",
+              startAngle: 90,
+              endAngle: -269.9999,
+              axisLine: {
+                lineStyle: {
+                  width: 5,
+                  opacity: 0, // 隐藏原始轴线
+                },
+              },
+              pointer: {
+                show: false,
+              },
+              axisTick: {
+                show: false,
+              },
+              splitLine: {
+                show: false,
+              },
+              axisLabel: {
+                show: false,
+              },
+              detail: {
+                show: false,
+              },
+              data: [{ value: 60 }],
+            },
+          ],
+        };
+
+        terminalBox.querySelector(".num").innerText = obj.num;
+        terminalBox.querySelector(".name").innerText = obj.name;
+
+        terminalECharts.clear();
+        terminalECharts.setOption(option, true);
+      }
+
+      function renderApplicationIndustryECharts(obj = []) {
+        const colors = ["#00EDED", "#65D3AE", "#536F47", "#5156FB"];
+        const option = {
+          legend: {
+            show: false, // 隐藏内置的图例
+          },
+          series: [
+            {
+              type: "pie",
+              radius: ["40%", "90%"],
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+                position: "center",
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  fontSize: 18,
+                  fontWeight: "normal",
+                  color: "#FFFFFF",
+                },
+              },
+              labelLine: {
+                show: false,
+              },
+              data: obj.slice(0, 4).map((item, index) => {
+                return {
+                  value: item.data,
+                  name: item.name,
+                  itemStyle: {
+                    color: colors[index],
+                  },
+                };
+              }),
+            },
+          ],
+        };
+
+        const legendItems =
+          applicationIndustry.querySelectorAll(".legend-item");
+
+        obj.slice(0, 4).forEach((item, index) => {
+          legendItems[index].querySelector("span").innerHTML = item.name;
+        });
+
+        obj[0] || legendItems[0].remove();
+        obj[1] || legendItems[1].remove();
+        obj[2] || legendItems[2].remove();
+        obj[3] || legendItems[3].remove();
+
+        applicationIndustryECharts.clear();
+        applicationIndustryECharts.setOption(option, true);
+      }
+
+      function renderSystemResourceECharts(obj = {}) {
+        var width = systemResourceECharts.getWidth();
+        var height = systemResourceECharts.getHeight();
+
+        const option = {
+          title: {
+            text: "",
+            left: "48%",
+            top: "45%",
+            textAlign: "center",
+            textVerticalAlign: "middle",
+            textStyle: {
+              color: "#fff",
+              fontSize: 12,
+              fontWeight: "normal",
+            },
+            show: false,
+          },
+          series: [
+            {
+              type: "pie",
+              radius: ["80%", "82%"],
+              hoverAnimation: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              data: (function () {
+                var data = [];
+                for (var i = 0; i < 100; ++i) {
+                  data.push({
+                    value: 1,
+                    itemStyle: {
+                      color: i % 2 === 0 ? "#1f6ba8" : "transparent",
+                    },
+                  });
+                }
+                return data;
+              })(),
+            },
+            {
+              type: "pie",
+              radius: ["69%", "76%"],
+              silent: false,
+              data: [
+                {
+                  value: obj.item1.num,
+                  itemStyle: { color: "#34bfa3" },
+                  label: {
+                    show: false,
+                  },
+                },
+                {
+                  value: 100 - obj.item1.num,
+                  itemStyle: { color: "#1f3b4d" },
+                  label: {
+                    show: true, // 显示标签
+                    position: "outside", // 标签显示在饼图外部
+                    formatter: (params) => {
+                      if (params.dataIndex === 0) {
+                        return params.value;
+                      } else {
+                        return "";
+                      }
+                    }, // 仅对第一个数据项显示标签内容
+                  },
+                  labelLine: {
+                    show: false, // 显示引导线
+                  },
+                },
+              ],
+              z: 10,
+            },
+            {
+              type: "pie",
+              radius: ["44%", "47%"],
+              silent: true,
+              label: {
+                show: false,
+              },
+              data: [{ value: 50, itemStyle: { color: "#00aaff" } }],
+            },
+            // 内层进度条环形圆
+            {
+              type: "pie",
+              radius: ["30%", "40%"], // 内外径，控制圆环的厚度
+              startAngle: 90, // 起始角度
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+              },
+              labelLine: {
+                show: false,
+              },
+              hoverAnimation: false, // 禁用鼠标悬浮的动画
+              data: [
+                {
+                  value: obj.item2.num,
+                  itemStyle: {
+                    borderRadius: "50%", // 半圆端点
+                    color: {
+                      type: "linear",
+                      x: 0,
+                      y: 0,
+                      x2: 0,
+                      y2: 1,
+                      colorStops: [
+                        { offset: 0, color: "#00A2CC" }, // 渐变起始颜色
+                        { offset: 1, color: "#00FBF2" }, // 渐变结束颜色
+                      ],
+                      global: false, // 缺省为 false
+                    },
+                  },
+                },
+                {
+                  value: 100 - obj.item2.num, // 剩余部分
+                  itemStyle: {
+                    color: "#084B82",
+                  },
+                },
+              ],
+            },
+            {
+              type: "gauge",
+              radius: "10%",
+              startAngle: 90,
+              endAngle: -269.9999,
+              axisLine: {
+                lineStyle: {
+                  width: 5,
+                  opacity: 0, // 隐藏原始轴线
+                },
+              },
+              pointer: {
+                show: false,
+              },
+              axisTick: {
+                show: false,
+              },
+              splitLine: {
+                show: false,
+              },
+              axisLabel: {
+                show: false,
+              },
+              detail: {
+                show: false,
+              },
+              data: [{ value: 60 }],
+            },
+          ],
+
+          graphic: [
+            {
+              type: "line",
+              shape: {
+                x1: width * 0.57,
+                y1: height * 0.15,
+                x2: width * 0.66,
+                y2: height * 0.06,
+              },
+              style: { stroke: "#ffac28", lineWidth: 2 },
+              z: 11,
+            },
+            {
+              type: "line",
+              shape: {
+                x1: width * 0.75,
+                y1: height * 0.06,
+                x2: width * 0.66,
+                y2: height * 0.06,
+              },
+              style: { stroke: "#ffac28", lineWidth: 2 },
+              z: 11,
+            },
+            {
+              type: "text",
+              left: width * 0.76,
+              top: height * 0.02,
+              style: {
+                text: obj.item1.name,
+                fill: "#ffffff",
+                font: "bold 12px sans-serif",
+              },
+              z: 11,
+            },
+            {
+              type: "line",
+              shape: {
+                x1: width * 0.5,
+                y1: height * 0.67,
+                x2: width * 0.6,
+                y2: height * 0.8,
+              },
+              style: { stroke: "#ffac28", lineWidth: 2 },
+              z: 11,
+            },
+            {
+              type: "line",
+              shape: {
+                x1: width * 0.6,
+                y1: height * 0.8,
+                x2: width * 0.77,
+                y2: height * 0.8,
+              },
+              style: { stroke: "#ffac28", lineWidth: 2 },
+              z: 11,
+            },
+            {
+              type: "text",
+              left: width * 0.78,
+              top: height * 0.77,
+              style: {
+                text: obj.item2.name,
+                fill: "#ffffff",
+                font: "bold 12px sans-serif",
+              },
+              z: 11,
+            },
+          ],
+        };
+        systemResourceECharts.clear();
+        systemResourceECharts.setOption(option, true);
+      }
+
+      function renderCurveCharts(obj = {}) {
+        const option = {
+          tooltip: {
+            trigger: "axis",
+            confine: true,
+            formatter: function (params) {
+              let tooltipContent = `<div style="padding:10px; font-size:14px;">
+                   <p>${params[0].axisValue}</p>
+                   <p style="margin-top: 7px;">数据：${params[0].data}</p>
+                </div>`;
+
+              return tooltipContent;
+            },
+            backgroundColor: "rgba(50,50,50,0.7)", // 设置背景颜色
+            borderColor: "#333", // 设置边框颜色
+            borderWidth: 1, // 设置边框宽度
+            textStyle: {
+              color: "#fff", // 设置文字颜色
+              fontSize: 12, // 设置文字大小
+            },
+            extraCssText: "box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);", // 设置额外的CSS样式，如阴影
+          },
+          grid: {
+            top: "5%", // 增加顶部边距以避免覆盖内容
+            bottom: "10%",
+            left: "7%",
+            right: "3%",
+            borderColor: "transparent", // 隐藏网格区域的边框
+            borderWidth: 0, // 隐藏网格区域的边框
+          },
+          xAxis: {
+            type: "category",
+            boundaryGap: false,
+            data: obj.titles,
+            axisLine: {
+              show: false, // 隐藏X轴线
+            },
+            axisLabel: {
+              show: false, // 隐藏X轴的刻度标签
+            },
+            axisTick: {
+              show: false, // 隐藏X轴的刻度线
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "rgba(255, 255, 255, 0.2)", // 网格线的颜色
+              },
+            },
+          },
+          yAxis: {
+            type: "value",
+            axisLine: {
+              show: false, // 隐藏Y轴线
+            },
+            /*  axisLabel: {
+              show: true, // 显示Y轴的刻度标签
+              color: (value, index) => {
+                window.maxValue =
+                  +value > window.maxValue ? +value : window.maxValue;
+                return "#008c8c"; // 与网格线颜色相同,
+              },
+            }, */
+            axisTick: {
+              show: true, // 显示Y轴的刻度线
+              lineStyle: {
+                color: "rgba(255, 255, 255, 0.2)", // 与网格线颜色相同
+              },
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "rgba(255, 255, 255, 0.2)", // 网格线的颜色
+              },
+            },
+          },
+          series: [
+            {
+              name: obj.name,
+              type: "line",
+              smooth: true,
+              symbol: "none",
+              lineStyle: {
+                color: "#00ccff",
+                opacity: 0,
+              },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                  { offset: 0, color: "#086189" },
+                  { offset: 1, color: "#58804E" },
+                ]),
+              },
+              data: obj.datas,
+              z: 1,
+            },
+            {
+              name: obj.name,
+              type: "line",
+              smooth: true,
+              symbol: "none",
+              lineStyle: {
+                color: "#008c8c",
+              },
+              areaStyle: null,
+              data: obj.datas,
+              z: 2,
+            },
+            /* {
+              name: "Top Cover",
+              type: "line",
+              smooth: true,
+              symbol: "none",
+              lineStyle: {
+                color: "transparent",
+              },
+              data: datas,
+              z: 5, // 确保它在所有其他系列上面
+              xAxisIndex: 0,
+              yAxisIndex: 0,
+              markLine: {
+                data: [
+                  { yAxis: maxValue1 }, // 放置在 yAxis 的最大值位置，覆盖顶部网格线
+                  { xAxis: "max" },
+                ],
+                lineStyle: {
+                  color: "#0b1e4f", // 透明颜色以隐藏网格线
+                  type: "solid",
+                },
+                label: {
+                  show: false, // 隐藏标签
+                },
+                symbol: "none", // 不显示箭头
+              },
+            }, */
+          ],
+          dataZoom: [
+            {
+              type: "inside", // 支持在图表内进行缩放
+              xAxisIndex: [0], // 指定缩放的 X 轴
+            },
+            {
+              type: "slider", // 支持通过滑块缩放
+              xAxisIndex: [0], // 指定缩放的 X 轴
+              start: 0, // 默认起始比例
+              end: 100, // 默认结束比例
+              show: false, // 隐藏滑块
+            },
+          ],
+        };
+
+        curveCharts && curveCharts.clear();
+        curveCharts.setOption(option, true);
+      }
+
+      function renderMapeCharts(obj = {}) {
+        const option = {
+          tooltip: {
+            trigger: "item",
+            icon: "query",
+            formatter: function (e, t, n) {
+              let string = "";
+              string += `<div style="padding:10px"><span style="padding-right:10px">${
+                e.name
+              }</span><span>(${e.value ? e.value : "0"}  台)</span> </div>`;
+              return string;
+            },
+            fontSize: "12px",
+            backgroundColor: "rgba(25, 175, 251, 0.5)", // 设置背景图片 rgba格式
+            color: "black",
+            borderWidth: "0", // 边框宽度设置1
+            borderColor: "rgba(9,229,237,.2)", // 设置边框颜色
+            textStyle: {
+              color: "#fff", // 设置文字颜色
+            },
+            extraCssText: "box-shadow: 0px 0px 20px inset #09E5ED",
+          },
+          geo: {
+            map: "world",
+            roam: true, // 是否可以缩放、拖拽
+            scaleLimit: {
+              min: 1,
+              max: 2,
+            },
+            zoom: 1,
+            label: {
+              show: false,
+              fontSize: "10",
+              color: "#fff",
+            },
+            itemStyle: {
+              borderWidth: 1,
+              areaColor: "#999999",
+              borderColor: "#ffffff",
+            },
+            emphasis: {
+              itemStyle: {
+                areaColor: "#1ab1f9", // 高亮时的区域颜色
+                borderWidth: 1,
+              },
+              label: {
+                show: true,
+                fontSize: "10",
+                color: "#fff",
+              },
+            },
+            select: {
+              itemStyle: {
+                areaColor: "#999999", // 点击时的区域颜色
+                borderWidth: 1,
+              },
+              label: {
+                show: false, // 点击后隐藏文本
+                fontSize: "10",
+                color: "#fff",
+              },
+            },
+            regions: obj.regions,
+            left: "1%", // 设置左侧距离
+            right: "1%", // 设置右侧距离
+            top: "15%", // 设置顶部距离
+            bottom: "5%", // 设置底部距离
+            roam: true, // 是否可以缩放、拖拽
+          },
+          series: [
+            {
+              name: "整机销售台数 (台)",
+              type: "map",
+              geoIndex: 0,
+              data: obj.series,
+              emphasis: {
+                itemStyle: {
+                  areaColor: "#1ab1f9", // 高亮时的区域颜色
+                  borderWidth: 1,
+                },
+                label: {
+                  show: true,
+                  fontSize: "10",
+                  color: "#fff",
+                },
+              },
+              select: {
+                itemStyle: {
+                  areaColor: "#999999", // 点击时的区域颜色
+                  borderWidth: 1,
+                },
+                label: {
+                  show: false, // 点击后隐藏文本
+                  fontSize: "10",
+                  color: "#fff",
+                },
+              },
+            },
+          ],
+        };
+        mapeCharts.clear();
+        mapeCharts.setOption(option, true);
+      }
+
+      function setDeviceStatistics(obj = {}) {
+        const items = deviceStatistics.querySelectorAll(".item");
+        items[0].querySelector(".num").innerText = obj.item1.num;
+        items[0].querySelector(".name").innerText = obj.item1.name;
+
+        items[1].querySelector(".num").innerText = obj.item2.num;
+        items[1].querySelector(".name").innerText = obj.item2.name;
+
+        items[2].querySelector(".num").innerText = obj.item3.num;
+        items[2].querySelector(".name").innerText = obj.item3.name;
+
+        items[3].querySelector(".num").innerText = obj.item4.num;
+        items[3].querySelector(".name").innerText = obj.item4.name;
+      }
+
+      // 防抖函数
+      function debounce(func, wait) {
+        let timeout;
+
+        return function (...args) {
+          const context = this;
+
+          clearTimeout(timeout);
+
+          timeout = setTimeout(() => {
+            func.apply(context, args);
+          }, wait);
+        };
+      }
+
+      // 注册监听事件
+      function registrationEvent() {
+        // 监听自定义图例的鼠标移入和移出事件
+        document.querySelectorAll(".legend-item").forEach(function (item) {
+          item.addEventListener("mouseover", function () {
+            var index = parseInt(this.getAttribute("data-index"));
+            // 触发图表项的放大效果
+            applicationIndustryECharts.dispatchAction({
+              type: "highlight",
+              seriesIndex: 0,
+              dataIndex: index,
+            });
+          });
+
+          item.addEventListener("mouseout", function () {
+            var index = parseInt(this.getAttribute("data-index"));
+            // 取消图表项的放大效果
+            applicationIndustryECharts.dispatchAction({
+              type: "downplay",
+              seriesIndex: 0,
+              dataIndex: index,
+            });
+          });
+        });
+      }
+
+      // 重渲染
+      function reRender() {
+        numberOfUsersECharts.resize();
+        numberOfDeviceECharts.resize();
+        enterpriseECharts.resize();
+        productECharts.resize();
+        personalECharts.resize();
+        terminalECharts.resize();
+        applicationIndustryECharts.resize();
+        systemResourceECharts.resize();
+        curveCharts.resize();
+        mapeCharts.resize();
+
+        setTimeout(() => {
+          renderNumOfUsersECharts(numOfUsersData);
+          renderNumOfDeviceECharts(numOfDeviceData);
+          renderEnterpriseECharts(enterpriseData);
+          renderProductECharts(productBoxData);
+          renderPersonalECharts(personalBoxData);
+          renderTerminalECharts(terminalBoxData);
+          renderApplicationIndustryECharts(applicationIndustryData);
+          renderSystemResourceECharts(systemResourceData);
+          renderCurveCharts(curveData);
+          curveCharts.resize();
+        }, 100);
+      }
+
+      const renderResize = debounce(reRender, 500);
+
+      // 构建时间
+      function getCurrentDateTime() {
+        const now = new Date();
+
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0"); // 月份从 0 开始，需要加 1
+        const day = String(now.getDate()).padStart(2, "0");
+
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      }
+
+      function realTimeDate() {
+        let first = true;
+        const timerId = setInterval(
+          () => {
+            const text = getCurrentDateTime();
+            const dom = document.querySelector(".largeScreen_center .dateBox");
+            first = false;
+            if (!dom) {
+              clearInterval(timerId);
+              return;
+            }
+            dom.innerText = text;
+          },
+          first ? 16 : 1000
+        );
+      };
+
+      // 构建选中
+      function buildSelected(data = []) {
+        const arr = [];
+        const arr1 = [];
+        for (let i = 0; i < data.length; i++) {
+          arr.push({ name: data[i].name, value: data[i].value });
+          arr1.push({
+            name: data[i].name,
+            itemStyle: {
+              areaColor: "#1ab1f9", // 区域颜色
+              borderWidth: 1,
+            },
+            emphasis: {
+              itemStyle: {
+                areaColor: "#1ab1f9", // 高亮时的区域颜色
+                borderWidth: 1,
+              },
+            },
+            label: {
+              show: true,
+              fontSize: "10",
+              color: "#fff",
+              formatter: data[i].value + "台",
+            },
+            select: {
+              itemStyle: {
+                areaColor: "#1ab1f9", // 点击时的区域颜色保持不变
+                borderWidth: 1,
+              },
+              label: {
+                show: true, // 点击后文本显示保持不变
+                fontSize: "10",
+                color: "#fff",
+              },
+            },
+          });
+        }
+        return {
+          regions: arr1,
+          series: arr,
+        };
+      }
+
+      // 新增用户数据
+      let numOfUsersData = {
+        xAxis: [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ],
+        data: [60, 80, 50, 70, 90, 40, 85, 55, 65, 75, 45, 95],
+        maxValue: 100,
+      };
+
+      // 新增设备数据
+      let numOfDeviceData = {
+        xAxis: [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ],
+        data: [60, 80, 50, 70, 90, 40, 85, 55, 65, 75, 45, 95],
+        maxValue: 100,
+      };
+
+      // 企业数
+      let enterpriseData = {
+        name: "企业数",
+        num: "2",
+      };
+
+      // 产品数
+      let productBoxData = {
+        name: "产品数",
+        num: "2",
+      };
+
+      // 个人用户
+      let personalBoxData = {
+        name: "个人用户",
+        num: "2",
+      };
+
+      // 终端用户
+      let terminalBoxData = {
+        name: "终端用户",
+        num: "2",
+      };
+
+      // 终端设备
+      let deviceStatisticsData = {
+        item1: {
+          name: "设备总数",
+          num: 111,
+        },
+        item2: {
+          name: "告警",
+          num: 222,
+        },
+        item3: {
+          name: "在线",
+          num: 333,
+        },
+        item4: {
+          name: "离线",
+          num: 555,
+        },
+      };
+
+      // 应用行业
+      let applicationIndustryData = [
+        {
+          name: "医疗",
+          data: 1048,
+        },
+        {
+          name: "食品",
+          data: 735,
+        },
+        {
+          name: "科研",
+          data: 580,
+        },
+        {
+          name: "化工",
+          data: 484,
+        },
+      ];
+
+      // 系统资源
+      let systemResourceData = {
+        item1: {
+          name: "CPU",
+          num: 30,
+        },
+        item2: {
+          name: "RAM",
+          num: 60, // 100 表示铺满
+        },
+      };
+
+      // 曲线数据
+      let curveData = {
+        titles: [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ],
+        datas: [60, 80, 50, 70, 90, 40, 85, 55, 65, 75, 45, 95],
+        name: "数据", // 名称
+      };
+
+      // 地图选中的国家
+      let mapeData = buildSelected([
+        { name: "China", value: 100 },
+        { name: "United States", value: 200 }, // name为国家名   value为数量
+      ]);
+
+      renderNumOfUsersECharts(numOfUsersData);
+      renderNumOfDeviceECharts(numOfDeviceData);
+      renderEnterpriseECharts(enterpriseData);
+      renderProductECharts(productBoxData);
+      renderPersonalECharts(personalBoxData);
+      renderTerminalECharts(terminalBoxData);
+      renderApplicationIndustryECharts(applicationIndustryData);
+      renderSystemResourceECharts(systemResourceData);
+      renderCurveCharts(curveData);
+      renderMapeCharts(mapeData);
+      realTimeDate();
+      registrationEvent();
+      setDeviceStatistics(deviceStatisticsData);
+
+      window.addEventListener("resize", renderResize);
+
+      // 左上角返回图表点击事件
+      largeScreen_titleBoxIcon.onclick = ()=>{
+           console.log('点击了');
+      };
+    </script>
+  </body>
+</html>
