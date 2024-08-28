@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>富文本编辑器</title>
+  <style>
+    #toolbar {
+      background-color: #f3f3f3;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    #toolbar button, #toolbar input[type="number"], #toolbar input[type="color"] {
+      margin-right: 5px;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    #editor {
+      border: 1px solid #ccc;
+      padding: 10px;
+      min-height: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="toolbar">
+  <!-- 基本格式按钮 -->
+  <button onclick="execCommand('bold')"><b>B</b></button>
+  <button onclick="execCommand('italic')"><i>I</i></button>
+  <button onclick="execCommand('underline')"><u>U</u></button>
+  <button onclick="execCommand('strikeThrough')"><s>S</s></button>
+
+  <!-- 字体大小 -->
+  <input type="number" id="fontSizeInput" placeholder="字体大小(px)" min="1" onchange="setFontSize()" />
+
+  <!-- 字体颜色 -->
+  <input type="color" onchange="execCommand('foreColor', this.value)" title="Font Color"/>
+
+  <!-- 列表格式 -->
+  <button onclick="execCommand('insertUnorderedList')">• 无序列表</button>
+  <button onclick="execCommand('insertOrderedList')">1. 有序列表</button>
+
+  <!-- 链接和图片 -->
+  <button onclick="execCommand('createLink', prompt('Enter the URL:'))">Link</button>
+  <button onclick="execCommand('insertImage', prompt('Enter the image URL:'))">Image</button>
+</div>
+
+<div id="editor" contenteditable="true">
+  <p>在这里输入内容...</p>
+</div>
+
+<script>
+  function execCommand(command, value = null) {
+    document.execCommand(command, false, value);
+  }
+
+  function setFontSize() {
+    const fontSize = document.getElementById('fontSizeInput').value;
+    if (fontSize) {
+      document.execCommand('fontSize', false, '7'); // 临时设置为一个值，我们会接下来调整
+      const fontElements = document.getElementsByTagName('font');
+      for (let i = 0; i < fontElements.length; i++) {
+        if (fontElements[i].size === '7') {
+          fontElements[i].removeAttribute('size');
+          fontElements[i].style.fontSize = fontSize + 'px';
+        }
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

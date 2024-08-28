@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本省略号示例</title>
+  <style>
+    .ellipsis {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* 显示两行 */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.5; /* 设置行高，确保文本高度正确 */
+      max-height: 3em; /* 最大高度为行高的两倍 */
+    }
+  </style>
+</head>
+<body>
+  <div class="ellipsis">
+    这是一个很长的文本示例，用来展示如何处理溢出文本的省略号效果。文本内容超过两行时，会被省略掉。
+  </div>
+</body>
+</html>
